@@ -1,9 +1,13 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const { randomBytes } = require("crypto");
+const cors = require("cors");
 
+// Set up middleware
 const app = express();
 app.use(bodyParser.json());
+app.use(cors());
+
 const commentsByPostId = {};
 
 // Get all comments for a given post
