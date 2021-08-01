@@ -1,6 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const { randomBytes } = require("crypto");
+const {randomBytes} = require("crypto");
 const cors = require("cors");
 
 // Set up middleware
@@ -20,19 +20,15 @@ app.post("/posts/:id/comments", (req, res) => {
     const commentId = randomBytes(4).toString("hex");
     const { content } = req.body;
 
-    const comments = commentsByPostId[commentId] || [] // Might be undefined
-    const comment = {
-        id: commentId,
-        content
-    }
+    const comments = commentsByPostId[req.params.id] || [];
 
-    comments.push(comment)
-    commentsByPostId[req.params.id] = comments
+    comments.push({id: commentId, content});
 
-    // Send back the whole array of comments on the post
+    commentsByPostId[req.params.id] = comments;
+
     res.status(201).send(comments);
 });
 
 app.listen(4001, () => {
-    console.log("Listening on port 4001");
+    console.log('Listening on 4001');
 });
