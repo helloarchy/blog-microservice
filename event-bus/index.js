@@ -5,6 +5,7 @@ const axios = require("axios");
 const app = express();
 app.use(bodyParser.json());
 
+// Catch and distribute events
 app.post("/events", (req, res) => {
   const event = req.body;
 
