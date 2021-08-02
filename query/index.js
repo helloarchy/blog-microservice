@@ -7,14 +7,39 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
+// Data
+const posts = {}
+
 // Get all posts with comments
 app.get("/posts", (req, res) => {
-    console.log("Get all posts")
+    res.send(posts);
 })
 
 // Receive events
 app.post("/events", (req, res) => {
-    console.log("Receive events.")
+    const {type, data} = req.body;
+
+    if (type === "PostCreated") {
+        // Add post to collection
+        const {id, title} = data;
+        posts[id] = {
+            id,
+            title,
+            comments: []
+        }
+    } else if (type === "CommentCreated") {
+        // Add comment to post collection
+        const {id, content, postId} = data;
+        const post = posts[postId]
+        post.comments.push({
+            id,
+            content
+        })
+    }
+
+    console.log(posts)
+
+    res.send({});
 })
 
 app.listen(4002, () => {
