@@ -14,12 +14,12 @@ app.post("/events", async (req, res) => {
 
     if (type === "CommentCreated") {
         // Moderate new comment
-        const status = data.content.status.contains(forbidden) ? "rejected" : "approved"
+        const status = data.content.includes(forbidden) ? "rejected" : "approved"
 
         // Emit event
         await axios.post("http://localhost:4005/events", {
             type: "CommentModerated",
-            content: {
+            data: {
                 id: data.id,
                 content: data.content,
                 postId: data.postId,

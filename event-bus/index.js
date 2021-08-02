@@ -7,24 +7,24 @@ app.use(bodyParser.json());
 
 // Catch and distribute events
 app.post("/events", (req, res) => {
-  const event = req.body;
+    const event = req.body;
 
-  axios
-    .post("http://localhost:4000/events", event)
-    .catch((e) => console.log(e.message));
-  axios
-    .post("http://localhost:4001/events", event)
-    .catch((e) => console.log(e.message));
-  axios
-    .post("http://localhost:4002/events", event)
-    .catch((e) => console.log(e.message));
-  axios
-      .post("http://localhost:4003/events", event)
-      .catch((e) => console.log(e.message));
+    axios
+        .post("http://localhost:4000/events", event)
+        .catch((e) => console.log(`Error posting event to Posts: ${e.message}`));
+    axios
+        .post("http://localhost:4001/events", event)
+        .catch((e) => console.log(`Error posting event to Comments: ${e.message}`));
+    axios
+        .post("http://localhost:4002/events", event)
+        .catch((e) => console.log(`Error posting event to Query: ${e.message}`));
+    axios
+        .post("http://localhost:4003/events", event)
+        .catch((e) => console.log(`Error posting event to Moderation: ${e.message}`));
 
-  res.send({ status: "OK" });
+    res.send({status: "OK"});
 });
 
 app.listen(4005, () => {
-  console.log("Listening on port 4005");
+    console.log("Listening on port 4005");
 });

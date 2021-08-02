@@ -69,7 +69,7 @@ app.post("/events", async (req, res) => {
     // Emit comment updated event
     await axios.post("http://localhost:4005/events", {
       type: "CommentUpdated",
-      content: comment
+      data: comment
     });
   }
   res.send({});
