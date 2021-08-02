@@ -21,10 +21,17 @@ app.post("/posts/:id/comments", async (req, res) => {
   const commentId = randomBytes(4).toString("hex");
   const { content } = req.body;
   const postId = req.params.id;
+  const status = "pending" // Default all new comments to pending while awaiting moderation
 
   const comments = commentsByPostId[postId] || [];
 
-  comments.push({ id: commentId, content });
+  const newComment = {
+    id: commentId,
+    content,
+    status,
+  }
+
+  comments.push(newComment);
 
   commentsByPostId[postId] = comments;
 
@@ -35,6 +42,7 @@ app.post("/posts/:id/comments", async (req, res) => {
       id: commentId,
       postId,
       content,
+      status,
     },
   });
 

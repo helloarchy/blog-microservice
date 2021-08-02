@@ -29,11 +29,12 @@ app.post("/events", (req, res) => {
         }
     } else if (type === "CommentCreated") {
         // Add comment to post collection
-        const {id, content, postId} = data;
+        const {id, content, postId, status} = data;
         const post = posts[postId]
         post.comments.push({
             id,
-            content
+            content,
+            status
         })
     }
 
