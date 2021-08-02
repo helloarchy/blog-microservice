@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import CommentCreate from "./CommentCreate";
 
 const CommentList = ({ postId }) => {
   const [comments, setComments] = useState([]);
