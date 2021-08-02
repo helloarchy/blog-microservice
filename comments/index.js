@@ -26,9 +26,10 @@ app.post("/posts/:id/comments", (req, res) => {
 
     commentsByPostId[req.params.id] = comments;
 
+    // Send back all comment on the post
     res.status(201).send(comments);
 });
 
 app.listen(4001, () => {
-    console.log('Listening on 4001');
+    console.log('Listening on port 4001');
 });
