@@ -15,3 +15,16 @@ spec:
       containers:
         - name: event-bus
           image: helloarchy/event-bus:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: event-bus-srv
+spec:
+  selector:
+    app: event-bus
+  ports:
+    - port: 4005
+      targetPort: 4005
+      name: posts
+      protocol: TCP
