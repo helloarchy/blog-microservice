@@ -21,13 +21,13 @@ app.post("/events", (req, res) => {
         .post("http://posts-srv:4000/events", event)
         .catch((e) => console.log(`Error posting event to Posts: ${e.message}`));
    axios
-        .post("http://localhost:4001/events", event)
+        .post("http://comments-srv:4001/events", event)
         .catch((e) => console.log(`Error posting event to Comments: ${e.message}`));
     axios
-        .post("http://localhost:4002/events", event)
+        .post("http://query-srv:4002/events", event)
         .catch((e) => console.log(`Error posting event to Query: ${e.message}`));
     axios
-        .post("http://localhost:4003/events", event)
+        .post("http://moderation-srv:4003/events", event)
         .catch((e) => console.log(`Error posting event to Moderation: ${e.message}`));
 
     res.send({status: "OK"});
