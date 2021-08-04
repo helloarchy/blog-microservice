@@ -24,7 +24,7 @@ spec:
   selector:
     app: query
   ports:
-    - port: 4000
-      targetPort: 4000
+    - port: 4002
+      targetPort: 4002
       name: query
       protocol: TCP
