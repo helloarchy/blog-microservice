@@ -32,3 +32,6 @@ Compiles a list of all posts with attached comments. Provides this data object t
 
 ### Moderation
 Moderates a given comment against a deny-list, ensuring no forbidden words are included. Emits an event on completed moderation.
+
+## Infrastructure
+The files at `./infra` contain all that is needed to create a new kubernetes cluster to run the services. Each microservice has a `Dockerfile` to build their respective images. *Skaffold* can be used to quickly build the cluster, and update each pod when changes are made locally.
